@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LAN CryptoChat Web</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    </head>
+    <body>
+        <div id="settings-button" onclick="toggleSettings()">⚙️</div>
+        
+        <div id="settings-menu">
+            <h2>Impostazioni</h2>
+            <div class="settings-section">
+                <label>Colore Principale:</label>
+                <div class="color-controls">
+                    <input type="color" id="main-color" value="#00ff00" onchange="updateMainColor(this.value)">
+                    <button onclick="resetColor()" class="reset-button">Reset</button>
+                </div>
+            </div>
+            <div class="settings-section">
+                <label>Stanza Attuale:</label>
+                <span id="current-room-display">default</span>
+            </div>
+            <div class="settings-section">
+                <label>Cambia Stanza:</label>
+                <input type="text" id="new-room" placeholder="Nome nuova stanza">
+                <button onclick="changeRoom()">Cambia</button>
+            </div>
+        </div>
+
+        <div id="login-screen">
+            <h1>LAN CryptoChat</h1>
+            <div>
+                <input type="text" id="username" placeholder="Inserisci il tuo username">
+                <input type="text" id="room" placeholder="Nome della stanza" value="default">
+                <button onclick="joinChat()">Entra nella chat</button>
+            </div>
+        </div>
+
+        <div id="chat-screen">
+            <div id="messages"></div>
+            <div id="input-area">
+                <input type="text" id="message-input" placeholder="Scrivi un messaggio...">
+                <button id="send-button">Invia</button>
+            </div>
+        </div>
+
+        <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+    </body>
+</html> 

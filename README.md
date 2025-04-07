@@ -1,110 +1,133 @@
-# 🔐 LAN CryptoChat (Terminal Edition)
+# 🔐 LAN CryptoChat
 
-Una semplice chat da terminale che permette la comunicazione tra più dispositivi connessi alla stessa rete locale (LAN), con **crittografia end-to-end** e **nessun salvataggio dei dati**. Progetto scritto in **Python**, pensato per essere educativo, utile e utilizzabile anche da telefono.
-
----
-
-## 📌 Obiettivo del progetto
-
-- Comunicare in modo sicuro su rete locale senza interfaccia grafica
-- Utilizzare crittografia simmetrica (AES) per proteggere i messaggi
-- Garantire la **temporaneità** della chat: niente file salvati, tutto si cancella a fine sessione
-- Possibilità di connettersi anche da uno **smartphone** connesso alla stessa rete
+Una chat web che permette la comunicazione tra più dispositivi connessi alla stessa rete locale (LAN), con **crittografia** e **nessun salvataggio dei dati**. Progetto scritto in **Python** con interfaccia web moderna e reattiva.
 
 ---
 
-## 🧱 Struttura del progetto
+## 📌 Caratteristiche principali
 
-### 1. Comunicazione di rete
-- Uso di `socket` per creare un **server TCP** e più **client**
-- Connessione via **IP locale + porta**
-
-### 2. Crittografia
-- Cifratura e decifratura dei messaggi usando:
-  - Algoritmo **AES**
-  - Codifica base64 per messaggi trasmissibili
-- Librerie: `cryptography` oppure `pycryptodome`
-
-### 3. Multithreading o Async
-- Un thread per inviare messaggi (input)
-- Un thread per riceverli in tempo reale
-- Libreria: `threading` o `asyncio`
-
-### 4. Accesso da smartphone
-- Il server resta in ascolto sull’**IP locale del PC**
-- Dal telefono ci si connette tramite:
-  - **Termux** con client Python
-  - (Facoltativo) **Mini interfaccia web con Flask**
-
-### 5. Sicurezza e temporaneità
-- Nessun messaggio viene salvato
-- Nessun log persistente
-- Possibile autodistruzione o timeout della sessione
+- Interfaccia web moderna e responsive
+- Supporto per stanze multiple
+- Crittografia dei messaggi
+- Tema scuro con colore personalizzabile
+- Nessun salvataggio dei messaggi
+- Accessibile da qualsiasi dispositivo con un browser
 
 ---
 
-## ✅ Checklist sviluppo
+## 🚀 Come iniziare
 
-### 🛠️ Preparazione ambiente
-- [ ] Installare librerie: `cryptography`, `socket`, `threading`
-- [ ] Verificare IP locale e connessione tra dispositivi
-- [ ] Scegliere una porta (es. 5000)
+### Requisiti di sistema
+- Python 3.8 o superiore
+- pip (gestore pacchetti Python)
 
-### 🧱 Base server-client
-- [ ] Server che accetta più client
-- [ ] Client che si connette al server
-- [ ] Test base di invio/ricezione
+### Installazione su Debian/Ubuntu
 
-### 🔐 Aggiunta crittografia
-- [ ] Generazione chiave segreta condivisa
-- [ ] Cifratura AES lato invio
-- [ ] Decifratura lato ricezione
+1. Installa Python e pip se non sono già installati:
+```bash
+sudo apt update
+sudo apt install python3 python3-pip python3-venv
+```
 
-### 🔄 Aggiunta multithreading
-- [ ] Thread per ricezione messaggi
-- [ ] Thread per input da terminale
+2. Clona il repository:
+```bash
+git clone https://github.com/Kerlooo/LAN-CryptoChat
+cd LAN-CryptoChat
+```
 
-### 📱 Supporto telefono
-- [ ] Collegamento da Termux o altro PC
-- [ ] Verifica ricezione/cifratura corretta
-- [ ] (Opzionale) Versione Flask minimale
+3. Crea e attiva un ambiente virtuale:
+```bash
+python3 -m venv myenv
+source myenv/bin/activate
+```
 
-### 🔐 Sicurezza finale
-- [ ] Nessun file di log
-- [ ] Distruzione chiavi a fine sessione
-- [ ] Disconnessione client alla chiusura del server
+4. Installa le dipendenze:
+```bash
+pip install -r requirements.txt
+```
+
+### Avvio dell'applicazione
+
+1. Attiva l'ambiente virtuale se non è già attivo:
+```bash
+source myenv/bin/activate
+```
+
+2. Avvia il server:
+```bash
+python web_server.py
+```
+
+3. Accedi alla chat:
+- Apri il browser su `http://IP_DEL_SERVER:5000`
+- Inserisci il tuo username e il nome della stanza
+- Inizia a chattare!
+
+### Note importanti
+- Assicurati che tutti i dispositivi siano sulla stessa rete locale
+- Il firewall potrebbe bloccare le connessioni. Se necessario, apri la porta 5000:
+```bash
+sudo ufw allow 5000
+```
 
 ---
 
-## 🧠 Tecnologie e librerie
+## 🎨 Funzionalità
+
+### 💬 Chat
+- Supporto per stanze multiple
+- Username personalizzati
+- Messaggi di stato per entrate/uscite
+- Crittografia dei messaggi
+
+### ⚙️ Personalizzazione
+- Tema scuro moderno
+- Colore principale personalizzabile
+- Salvataggio delle preferenze
+- Interfaccia responsive per mobile
+
+### 🔒 Sicurezza
+- Crittografia dei messaggi
+- Nessun salvataggio dei dati
+- Connessioni solo in rete locale
+
+---
+
+## 📁 Struttura del progetto
+
+```
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── chat.js
+├── templates/
+│   └── index.html
+├── crypto_utils.py
+├── web_server.py
+├── README.md
+└── requirements.txt
+```
+
+---
+
+## 🧠 Tecnologie utilizzate
 
 | Scopo                 | Tecnologie / Librerie           |
 |----------------------|----------------------------------|
-| Networking           | `socket`, IP locali, porte       |
-| Crittografia         | `cryptography`, `pycryptodome`   |
-| Multithreading       | `threading` / `asyncio`          |
-| Encoding             | `base64`, `secrets`              |
-| Web support (opz.)   | `Flask`                          |
-| Terminale da mobile  | `Termux` su Android              |
-
----
-
-## 📁 Organizzazione file (esempio)
-
-├── client.py 
-├── server.py 
-├── crypto_utils.py 
-├── README.md 
-└── requirements.txt
+| Backend              | Flask, Flask-SocketIO            |
+| Frontend             | HTML5, CSS3, JavaScript          |
+| WebSocket            | Socket.IO                        |
+| Crittografia         | cryptography                     |
 
 ---
 
 ## 📎 Note finali
 
-> ⚠️ Questo progetto è pensato a scopo didattico. Non è destinato a sostituire soluzioni di messaggistica sicura professionali.  
-> Perfetto per imparare come funzionano **reti**, **crittografia** e **programmazione asincrona** in Python.
+> ⚠️ Questo progetto è pensato per l'uso in rete locale.  
+> Perfetto per chattare in modo sicuro all'interno della propria rete.
 
 ---
 
-Se ti è piaciuto questo progetto, sentiti libero di fare una fork, migliorarne la sicurezza, o implementare una versione con GUI o webapp!
+Se ti è piaciuto questo progetto, sentiti libero di fare una fork e aggiungere nuove funzionalità!
 
