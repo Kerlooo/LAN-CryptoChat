@@ -1,6 +1,6 @@
 # 🔐 LAN CryptoChat
 
-Una chat web che permette la comunicazione tra più dispositivi connessi alla stessa rete locale (LAN), con **crittografia** e **nessun salvataggio dei dati**. Progetto scritto in **Python** con interfaccia web moderna e reattiva.
+Una chat web che permette la comunicazione tra più dispositivi connessi alla stessa rete locale (LAN), con **crittografia** e **nessun salvataggio dei dati**. 
 
 ---
 
